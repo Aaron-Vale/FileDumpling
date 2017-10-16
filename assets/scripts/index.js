@@ -4,11 +4,15 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const authEvents = require('./auth/events.js')
 const uploadEvents = require('./uploads/events')
+const successSound = $('#successSound')[0]
 
 $(() => {
   setAPIOrigin(location, config)
   authEvents.addHandlers()
   $('.initial-hide').hide()
+  $('.dumply').on('click', function () {
+    successSound.play()
+  })
   $('#multipart-form-data').on('submit', uploadEvents.createUploadMultiPart)
   $(document).on('change', ':file', function () {
     const input = $(this)
